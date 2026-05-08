@@ -12,7 +12,7 @@ namespace ProyectoVentas.Repository
         private string connectionString=
             "Server=.;Database=VentasDB;Trusted_Connection=True;";
 
-        public bool Login(string username, string password)
+        public string Login(string username, string password)
         {
             using (SqlConnection conn =
                 new SqlConnection(connectionString))
@@ -20,19 +20,26 @@ namespace ProyectoVentas.Repository
                 conn.Open();
 
                 string query = @"
-                    SELECT COUNT(*)
-                    FROM Usuario
-                    WHERE Username = @Username
-                    AND Password = @Password";
+            SELECT Rol
+            FROM Usuario
+            WHERE Username = @Username
+            AND Password = @Password";
 
-                SqlCommand cmd=new SqlCommand(query, conn);
+                SqlCommand cmd = new SqlCommand(query, conn);
 
                 cmd.Parameters.AddWithValue("@Username", username);
                 cmd.Parameters.AddWithValue("@Password", password);
 
-                int cantidad=(int)cmd.ExecuteScalar();
+                object result = cmd.ExecuteScalar();
 
-                return cantidad > 0;
+                if (result != null)
+                {
+                    return result.ToString(); // "admin" o "vendedor"
+                }
+                else
+                {
+                    return ""; // login fallido
+                }
             }
         }
     }

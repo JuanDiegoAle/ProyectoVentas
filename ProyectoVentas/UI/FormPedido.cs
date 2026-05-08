@@ -20,14 +20,20 @@ namespace ProyectoVentas
 {
     public partial class FormPedido : Form
     {
+        private string rol;
+        private string usuario;
         private PagoService pagoService=new PagoService();
         private PedidoRepository repo=new PedidoRepository();
 
-        public FormPedido()
+        public FormPedido(string rolUsuario, string nombreUsuario)
         {
             InitializeComponent();
+            rol = rolUsuario;
+            usuario = nombreUsuario;
+
             cmbPago.Items.Add("Yape");
             cmbPago.Items.Add("Tarjeta");
+
             dgvPedidos.DataSource = repo.ObtenerTodos();
 
             cmbFiltro.Items.Add("Yape");
@@ -37,7 +43,15 @@ namespace ProyectoVentas
 
         private void FormPedido_Load(object sender, EventArgs e)
         {
-
+            if (rol == "vendedor")
+            {
+                btnEliminar.Visible = false;
+                btnTotal.Visible = false;
+                btnAbrirGrafico.Visible = false;
+                btnExportar.Visible = false;
+                btnEditar.Visible = false;
+                lblTotal.Visible=false;
+            }
         }
 
         private void label1_Click(object sender, EventArgs e)
@@ -54,7 +68,7 @@ namespace ProyectoVentas
             }
 
             decimal total;
-            if(!decimal.TryParse(txtTotal.Text, out total))
+            if (!decimal.TryParse(txtTotal.Text, out total))
             {
                 MessageBox.Show("Monto Invalido");
                 return;
@@ -70,25 +84,50 @@ namespace ProyectoVentas
                     metodoPago = new PagoTarjeta();
                     break;
                 default:
-                    MessageBox.Show("Seleccioine un Método de Pago");
+                    MessageBox.Show("Seleccione un Método de Pago");
                     return;
             }
 
-            bool exito=pagoService.Procesar(metodoPago,total);
+            bool exito = pagoService.Procesar(metodoPago, total);
 
             if (!exito) return;
 
-            Pedido pedido = new Pedido
+            // 🔥 AQUI VIENE LA MAGIA
+            if (txtTotal.Tag != null) // MODO EDITAR
             {
-                Total = total,
-                MetodoPago=metodoPago.Nombre
-            };
+                int id = (int)txtTotal.Tag;
 
-            repo.Guardar(pedido);
+                Pedido pedidoEditado = new Pedido
+                {
+                    Id = id,
+                    Total = total,
+                    MetodoPago = metodoPago.Nombre
+                };
 
-            MessageBox.Show("Pedido guardado correctamente");
+                repo.Actualizar(pedidoEditado);
 
+                MessageBox.Show("Pedido actualizado");
+
+                txtTotal.Tag = null; // limpiar modo edición
+            }
+            else // MODO CREAR
+            {
+                Pedido pedido = new Pedido
+                {
+                    Total = total,
+                    MetodoPago = metodoPago.Nombre,
+                    Usuario = usuario
+                };
+
+                repo.Guardar(pedido);
+
+                MessageBox.Show("Pedido guardado correctamente");
+            }
+
+            // 🔄 limpiar y refrescar
             txtTotal.Text = "";
+            cmbPago.SelectedIndex = -1;
+            dgvPedidos.DataSource = repo.ObtenerTodos();
         }
 
         private void btnListar_Click(object sender, EventArgs e)
@@ -182,6 +221,28 @@ namespace ProyectoVentas
             excel.Visible = true;
 
             MessageBox.Show("Exportacion completada");
+        }
+
+        private void btnEditar_Click(object sender, EventArgs e)
+        {
+            if (dgvPedidos.CurrentRow == null)
+            {
+                MessageBox.Show("Seleccione un pedido");
+                return;
+            }
+
+            int id = (int)dgvPedidos.CurrentRow.Cells["Id"].Value;
+            decimal total = (decimal)dgvPedidos.CurrentRow.Cells["Total"].Value;
+            string metodo = dgvPedidos.CurrentRow.Cells["MetodoPago"].Value.ToString();
+
+            txtTotal.Text = total.ToString();
+            cmbPago.Text = metodo;
+
+            txtTotal.Tag = id;
+
+            btnProcesar.Text = "Actualizar"; 
+
+            MessageBox.Show("Modo edición activado");
         }
     }
 }

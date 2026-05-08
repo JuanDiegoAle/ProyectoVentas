@@ -12,5 +12,7 @@ namespace ProyectoVentas.Models
         public decimal Total { get; set; }
         public string MetodoPago { get; set; }
 
+        public string Usuario { get; set; }
+
     }
 }

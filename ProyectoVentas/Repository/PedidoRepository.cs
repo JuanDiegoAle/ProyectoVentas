@@ -18,10 +18,11 @@ namespace ProyectoVentas.Repository
             {
                 conn.Open();
 
-                string query = "INSERT INTO Pedido (Total, MetodoPago) VALUES (@Total,@MetodoPago)";
+                string query = "INSERT INTO Pedido (Total, MetodoPago, Usuario)\r\nVALUES (@Total, @MetodoPago, @Usuario)";
                 SqlCommand cmd=new SqlCommand(query, conn);
                 cmd.Parameters.AddWithValue("@Total", pedido.Total);
                 cmd.Parameters.AddWithValue("@MetodoPago", pedido.MetodoPago);
+                cmd.Parameters.AddWithValue("@Usuario", pedido.Usuario);
 
                 cmd.ExecuteNonQuery();
             }
@@ -37,7 +38,7 @@ namespace ProyectoVentas.Repository
 
                 string query = "SELECT * FROM Pedido";
 
-                SqlCommand cmd= new SqlCommand(query, conn);
+                SqlCommand cmd = new SqlCommand(query, conn);
                 SqlDataReader reader = cmd.ExecuteReader();
 
                 while (reader.Read())
@@ -46,9 +47,9 @@ namespace ProyectoVentas.Repository
                     {
                         Id = (int)reader["Id"],
                         Total = (decimal)reader["Total"],
-                        MetodoPago = reader["MetodoPago"].ToString()
+                        MetodoPago = reader["MetodoPago"].ToString(),
+                        Usuario = reader["Usuario"].ToString() 
                     });
-                          
                 }
             }
             return lista;
@@ -106,8 +107,8 @@ namespace ProyectoVentas.Repository
                     {
                         Id = (int)reader["Id"],
                         Total = (decimal)reader["Total"],
-                        MetodoPago = reader["MetodoPago"].ToString()
-
+                        MetodoPago = reader["MetodoPago"].ToString(),
+                        Usuario = reader["Usuario"].ToString()
                     });
                     
                 }
@@ -140,6 +141,28 @@ namespace ProyectoVentas.Repository
                 }
             }
             return datos;
+        }
+
+        public void Actualizar(Pedido pedido)
+        {
+            using (SqlConnection conn = new SqlConnection(connectionString))
+            {
+                conn.Open();
+
+                string query = @"
+                                UPDATE Pedido
+                                SET Total = @Total,
+                                    MetodoPago = @MetodoPago
+                                WHERE Id = @Id";
+
+                SqlCommand cmd = new SqlCommand(query, conn);
+
+                cmd.Parameters.AddWithValue("@Total", pedido.Total);
+                cmd.Parameters.AddWithValue("@MetodoPago", pedido.MetodoPago);
+                cmd.Parameters.AddWithValue("@Id", pedido.Id);
+
+                cmd.ExecuteNonQuery();
+            }
         }
     }
 }

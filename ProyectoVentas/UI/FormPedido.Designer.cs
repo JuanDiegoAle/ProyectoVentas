@@ -44,6 +44,7 @@
             this.btnFiltrar = new System.Windows.Forms.Button();
             this.btnAbrirGrafico = new System.Windows.Forms.Button();
             this.btnExportar = new System.Windows.Forms.Button();
+            this.btnEditar = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.dgvPedidos)).BeginInit();
             this.SuspendLayout();
             // 
@@ -124,7 +125,7 @@
             // 
             // btnListar
             // 
-            this.btnListar.Location = new System.Drawing.Point(474, 352);
+            this.btnListar.Location = new System.Drawing.Point(473, 371);
             this.btnListar.Name = "btnListar";
             this.btnListar.Size = new System.Drawing.Size(75, 23);
             this.btnListar.TabIndex = 8;
@@ -134,7 +135,7 @@
             // 
             // btnEliminar
             // 
-            this.btnEliminar.Location = new System.Drawing.Point(475, 318);
+            this.btnEliminar.Location = new System.Drawing.Point(474, 337);
             this.btnEliminar.Name = "btnEliminar";
             this.btnEliminar.Size = new System.Drawing.Size(75, 23);
             this.btnEliminar.TabIndex = 9;
@@ -144,7 +145,7 @@
             // 
             // btnTotal
             // 
-            this.btnTotal.Location = new System.Drawing.Point(475, 382);
+            this.btnTotal.Location = new System.Drawing.Point(474, 401);
             this.btnTotal.Name = "btnTotal";
             this.btnTotal.Size = new System.Drawing.Size(75, 23);
             this.btnTotal.TabIndex = 10;
@@ -171,7 +172,7 @@
             // 
             // btnFiltrar
             // 
-            this.btnFiltrar.Location = new System.Drawing.Point(475, 411);
+            this.btnFiltrar.Location = new System.Drawing.Point(474, 430);
             this.btnFiltrar.Name = "btnFiltrar";
             this.btnFiltrar.Size = new System.Drawing.Size(75, 23);
             this.btnFiltrar.TabIndex = 13;
@@ -181,7 +182,7 @@
             // 
             // btnAbrirGrafico
             // 
-            this.btnAbrirGrafico.Location = new System.Drawing.Point(475, 440);
+            this.btnAbrirGrafico.Location = new System.Drawing.Point(474, 459);
             this.btnAbrirGrafico.Name = "btnAbrirGrafico";
             this.btnAbrirGrafico.Size = new System.Drawing.Size(75, 37);
             this.btnAbrirGrafico.TabIndex = 14;
@@ -191,7 +192,7 @@
             // 
             // btnExportar
             // 
-            this.btnExportar.Location = new System.Drawing.Point(474, 483);
+            this.btnExportar.Location = new System.Drawing.Point(473, 502);
             this.btnExportar.Name = "btnExportar";
             this.btnExportar.Size = new System.Drawing.Size(75, 23);
             this.btnExportar.TabIndex = 15;
@@ -199,11 +200,22 @@
             this.btnExportar.UseVisualStyleBackColor = true;
             this.btnExportar.Click += new System.EventHandler(this.btnExportar_Click);
             // 
+            // btnEditar
+            // 
+            this.btnEditar.Location = new System.Drawing.Point(475, 308);
+            this.btnEditar.Name = "btnEditar";
+            this.btnEditar.Size = new System.Drawing.Size(75, 23);
+            this.btnEditar.TabIndex = 16;
+            this.btnEditar.Text = "Editar";
+            this.btnEditar.UseVisualStyleBackColor = true;
+            this.btnEditar.Click += new System.EventHandler(this.btnEditar_Click);
+            // 
             // FormPedido
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(596, 580);
+            this.Controls.Add(this.btnEditar);
             this.Controls.Add(this.btnExportar);
             this.Controls.Add(this.btnAbrirGrafico);
             this.Controls.Add(this.btnFiltrar);
@@ -247,6 +259,7 @@
         private System.Windows.Forms.Button btnFiltrar;
         private System.Windows.Forms.Button btnAbrirGrafico;
         private System.Windows.Forms.Button btnExportar;
+        private System.Windows.Forms.Button btnEditar;
     }
 }
 

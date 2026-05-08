@@ -26,27 +26,36 @@ namespace ProyectoVentas
 
         private void btnLogin_Click(object sender, EventArgs e)
         {
-            string usuario=txtUsuario.Text;
-            string password=txtPassword.Text;
+            string usuario = txtUsuario.Text.Trim();
+            string password = txtPassword.Text.Trim();
 
-            bool acceso=repo.Login(usuario, password); 
+            UsuarioRepository repo = new UsuarioRepository();
 
-            if (acceso)
+            string rol = repo.Login(usuario, password);
+
+            if (rol == "admin")
             {
-                MessageBox.Show("Bienvenido "+usuario);
+                MessageBox.Show("Bienvenido Administrador: " + usuario);
 
-                FormPedido form=new FormPedido();
+                FormPedido form = new FormPedido(rol,usuario);
 
                 this.Hide();
-
                 form.ShowDialog();
-
                 this.Close();
-
-                
-            }else
+            }
+            else if (rol == "vendedor")
             {
-                MessageBox.Show("Usuario o contraseña Incorrectos");
+                MessageBox.Show("Bienvenido Vendedor: " + usuario);
+
+                FormPedido form = new FormPedido(rol,usuario);
+
+                this.Hide();
+                form.ShowDialog();
+                this.Close();
+            }
+            else
+            {
+                MessageBox.Show("Usuario o contraseña incorrectos");
             }
         }
     }
