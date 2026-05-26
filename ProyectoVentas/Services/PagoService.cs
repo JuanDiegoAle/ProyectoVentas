@@ -8,7 +8,7 @@ using System.Windows.Forms;
 
 namespace ProyectoVentas.Services
 {
-    public  class PagoService
+    public  class PagoService:IPagoService
     {
         public bool Procesar(IPago metodoPago,decimal monto)
         {

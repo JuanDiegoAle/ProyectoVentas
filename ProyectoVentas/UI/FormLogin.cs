@@ -1,4 +1,6 @@
-﻿using ProyectoVentas.Repository;
+﻿using ProyectoVentas.Interfaces;
+using ProyectoVentas.Repository;
+using ProyectoVentas.Services;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -9,14 +11,16 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
+
 namespace ProyectoVentas
 {
     public partial class FormLogin : Form
     {
-        private UsuarioRepository repo=new UsuarioRepository();
-        public FormLogin()
+        private IUsuarioRepository repo;
+        public FormLogin(IUsuarioRepository usuariorepo)
         {
             InitializeComponent();
+            repo = usuariorepo;
         }
 
         private void FormLogin_Load(object sender, EventArgs e)
@@ -29,25 +33,18 @@ namespace ProyectoVentas
             string usuario = txtUsuario.Text.Trim();
             string password = txtPassword.Text.Trim();
 
-            UsuarioRepository repo = new UsuarioRepository();
+            bool acceso = repo.Login(usuario, password);
 
-            string rol = repo.Login(usuario, password);
-
-            if (rol == "admin")
+            if (acceso)
             {
-                MessageBox.Show("Bienvenido Administrador: " + usuario);
+                string rol = repo.ObtenerRol(usuario);
 
-                FormPedido form = new FormPedido(rol,usuario);
+                MessageBox.Show("Bienvenido " + rol + ": " + usuario);
 
-                this.Hide();
-                form.ShowDialog();
-                this.Close();
-            }
-            else if (rol == "vendedor")
-            {
-                MessageBox.Show("Bienvenido Vendedor: " + usuario);
+                IPedidoRepository pedidoRepo = new PedidoRepository();
+                IPagoService pagoService = new PagoService();
 
-                FormPedido form = new FormPedido(rol,usuario);
+                FormPedido form = new FormPedido(rol, usuario, pedidoRepo, pagoService);
 
                 this.Hide();
                 form.ShowDialog();

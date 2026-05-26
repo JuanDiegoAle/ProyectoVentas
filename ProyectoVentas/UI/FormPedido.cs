@@ -22,14 +22,17 @@ namespace ProyectoVentas
     {
         private string rol;
         private string usuario;
-        private PagoService pagoService=new PagoService();
-        private PedidoRepository repo=new PedidoRepository();
+        private IPagoService pagoService;
+        private IPedidoRepository repo;
 
-        public FormPedido(string rolUsuario, string nombreUsuario)
+        public FormPedido(string rolUsuario, string nombreUsuario,IPedidoRepository repository,IPagoService pagoSrv)
         {
             InitializeComponent();
             rol = rolUsuario;
             usuario = nombreUsuario;
+
+            repo = repository;
+            pagoService = pagoSrv;
 
             cmbPago.Items.Add("Yape");
             cmbPago.Items.Add("Tarjeta");
@@ -76,7 +79,10 @@ namespace ProyectoVentas
 
             if (total <= 0)
             {
-                MessageBox.Show("El monto no puede ser negativo o cero");
+                MessageBox.Show("Ingrese un monto válido mayor a 0",
+                "Validación",
+                MessageBoxButtons.OK,
+                MessageBoxIcon.Warning);
                 return;
             }
 

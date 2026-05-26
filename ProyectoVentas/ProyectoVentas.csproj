@@ -47,6 +47,9 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Interfaces\IPagoService.cs" />
+    <Compile Include="Interfaces\IPedidoRepository.cs" />
+    <Compile Include="Interfaces\IUsuarioRepository.cs" />
     <Compile Include="UI\FormLogin.cs">
       <SubType>Form</SubType>
     </Compile>

@@ -1,4 +1,6 @@
-﻿using System;
+﻿using ProyectoVentas.Interfaces;
+using ProyectoVentas.Repository;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
@@ -16,7 +18,9 @@ namespace ProyectoVentas
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new FormLogin());
+            IUsuarioRepository usuarioRepo = new UsuarioRepository();
+
+            Application.Run(new FormLogin(usuarioRepo));
         }
     }
 }

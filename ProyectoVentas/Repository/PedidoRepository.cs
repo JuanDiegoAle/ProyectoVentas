@@ -1,4 +1,5 @@
-﻿using ProyectoVentas.Models;
+﻿using ProyectoVentas.Interfaces;
+using ProyectoVentas.Models;
 using System;
 using System.Collections.Generic;
 using System.Data.SqlClient;
@@ -8,7 +9,7 @@ using System.Threading.Tasks;
 
 namespace ProyectoVentas.Repository
 {
-    public  class PedidoRepository
+    public  class PedidoRepository: IPedidoRepository
     {
         private string connectionString = "Server=.;Database=VentasDB;Trusted_Connection=True;";
 
