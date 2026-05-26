@@ -28,7 +28,6 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FormPedido));
             this.txtTotal = new System.Windows.Forms.TextBox();
             this.cmbPago = new System.Windows.Forms.ComboBox();
             this.btnProcesar = new System.Windows.Forms.Button();
@@ -217,7 +216,7 @@
             // 
             // pictureBox1
             // 
-            this.pictureBox1.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox1.Image")));
+            this.pictureBox1.Image = global::ProyectoVentas.Properties.Resources.fd0b9d3f0d08f9bbf2660e6faed11a52;
             this.pictureBox1.Location = new System.Drawing.Point(417, 27);
             this.pictureBox1.Name = "pictureBox1";
             this.pictureBox1.Size = new System.Drawing.Size(167, 143);
