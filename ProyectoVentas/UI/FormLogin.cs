@@ -44,9 +44,11 @@ namespace ProyectoVentas
                 IPedidoRepository pedidoRepo = new PedidoRepository();
                 IPagoService pagoService = new PagoService();
 
-                FormPedido form = new FormPedido(rol, usuario, pedidoRepo, pagoService);
-
+    
                 this.Hide();
+                FormCarga carga = new FormCarga(usuario);
+                carga.ShowDialog();
+                FormPedido form = new FormPedido(rol, usuario, pedidoRepo, pagoService);
                 form.ShowDialog();
                 this.Close();
             }

@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FormPedido));
             this.txtTotal = new System.Windows.Forms.TextBox();
             this.cmbPago = new System.Windows.Forms.ComboBox();
             this.btnProcesar = new System.Windows.Forms.Button();
@@ -45,7 +46,11 @@
             this.btnAbrirGrafico = new System.Windows.Forms.Button();
             this.btnExportar = new System.Windows.Forms.Button();
             this.btnEditar = new System.Windows.Forms.Button();
+            this.pictureBox1 = new System.Windows.Forms.PictureBox();
+            this.groupBox1 = new System.Windows.Forms.GroupBox();
             ((System.ComponentModel.ISupportInitialize)(this.dgvPedidos)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
+            this.groupBox1.SuspendLayout();
             this.SuspendLayout();
             // 
             // txtTotal
@@ -108,11 +113,11 @@
             // 
             this.label4.AutoSize = true;
             this.label4.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label4.Location = new System.Drawing.Point(60, 56);
+            this.label4.Location = new System.Drawing.Point(20, 54);
             this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(175, 24);
+            this.label4.Size = new System.Drawing.Size(207, 24);
             this.label4.TabIndex = 6;
-            this.label4.Text = "Gestion de Pedidos";
+            this.label4.Text = "GESTION DE VENTAS";
             // 
             // dgvPedidos
             // 
@@ -125,7 +130,7 @@
             // 
             // btnListar
             // 
-            this.btnListar.Location = new System.Drawing.Point(473, 371);
+            this.btnListar.Location = new System.Drawing.Point(16, 91);
             this.btnListar.Name = "btnListar";
             this.btnListar.Size = new System.Drawing.Size(75, 23);
             this.btnListar.TabIndex = 8;
@@ -135,7 +140,7 @@
             // 
             // btnEliminar
             // 
-            this.btnEliminar.Location = new System.Drawing.Point(474, 337);
+            this.btnEliminar.Location = new System.Drawing.Point(17, 57);
             this.btnEliminar.Name = "btnEliminar";
             this.btnEliminar.Size = new System.Drawing.Size(75, 23);
             this.btnEliminar.TabIndex = 9;
@@ -145,7 +150,7 @@
             // 
             // btnTotal
             // 
-            this.btnTotal.Location = new System.Drawing.Point(474, 401);
+            this.btnTotal.Location = new System.Drawing.Point(17, 121);
             this.btnTotal.Name = "btnTotal";
             this.btnTotal.Size = new System.Drawing.Size(75, 23);
             this.btnTotal.TabIndex = 10;
@@ -172,7 +177,7 @@
             // 
             // btnFiltrar
             // 
-            this.btnFiltrar.Location = new System.Drawing.Point(474, 430);
+            this.btnFiltrar.Location = new System.Drawing.Point(17, 150);
             this.btnFiltrar.Name = "btnFiltrar";
             this.btnFiltrar.Size = new System.Drawing.Size(75, 23);
             this.btnFiltrar.TabIndex = 13;
@@ -182,7 +187,7 @@
             // 
             // btnAbrirGrafico
             // 
-            this.btnAbrirGrafico.Location = new System.Drawing.Point(474, 459);
+            this.btnAbrirGrafico.Location = new System.Drawing.Point(17, 179);
             this.btnAbrirGrafico.Name = "btnAbrirGrafico";
             this.btnAbrirGrafico.Size = new System.Drawing.Size(75, 37);
             this.btnAbrirGrafico.TabIndex = 14;
@@ -192,7 +197,7 @@
             // 
             // btnExportar
             // 
-            this.btnExportar.Location = new System.Drawing.Point(473, 502);
+            this.btnExportar.Location = new System.Drawing.Point(16, 222);
             this.btnExportar.Name = "btnExportar";
             this.btnExportar.Size = new System.Drawing.Size(75, 23);
             this.btnExportar.TabIndex = 15;
@@ -202,7 +207,7 @@
             // 
             // btnEditar
             // 
-            this.btnEditar.Location = new System.Drawing.Point(475, 308);
+            this.btnEditar.Location = new System.Drawing.Point(18, 28);
             this.btnEditar.Name = "btnEditar";
             this.btnEditar.Size = new System.Drawing.Size(75, 23);
             this.btnEditar.TabIndex = 16;
@@ -210,20 +215,41 @@
             this.btnEditar.UseVisualStyleBackColor = true;
             this.btnEditar.Click += new System.EventHandler(this.btnEditar_Click);
             // 
+            // pictureBox1
+            // 
+            this.pictureBox1.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox1.Image")));
+            this.pictureBox1.Location = new System.Drawing.Point(417, 27);
+            this.pictureBox1.Name = "pictureBox1";
+            this.pictureBox1.Size = new System.Drawing.Size(167, 143);
+            this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.pictureBox1.TabIndex = 17;
+            this.pictureBox1.TabStop = false;
+            // 
+            // groupBox1
+            // 
+            this.groupBox1.Controls.Add(this.btnEditar);
+            this.groupBox1.Controls.Add(this.btnExportar);
+            this.groupBox1.Controls.Add(this.btnAbrirGrafico);
+            this.groupBox1.Controls.Add(this.btnFiltrar);
+            this.groupBox1.Controls.Add(this.btnTotal);
+            this.groupBox1.Controls.Add(this.btnEliminar);
+            this.groupBox1.Controls.Add(this.btnListar);
+            this.groupBox1.Location = new System.Drawing.Point(482, 296);
+            this.groupBox1.Name = "groupBox1";
+            this.groupBox1.Size = new System.Drawing.Size(111, 271);
+            this.groupBox1.TabIndex = 18;
+            this.groupBox1.TabStop = false;
+            this.groupBox1.Text = "RECURSOS";
+            // 
             // FormPedido
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(596, 580);
-            this.Controls.Add(this.btnEditar);
-            this.Controls.Add(this.btnExportar);
-            this.Controls.Add(this.btnAbrirGrafico);
-            this.Controls.Add(this.btnFiltrar);
+            this.Controls.Add(this.groupBox1);
+            this.Controls.Add(this.pictureBox1);
             this.Controls.Add(this.cmbFiltro);
             this.Controls.Add(this.lblTotal);
-            this.Controls.Add(this.btnTotal);
-            this.Controls.Add(this.btnEliminar);
-            this.Controls.Add(this.btnListar);
             this.Controls.Add(this.dgvPedidos);
             this.Controls.Add(this.label4);
             this.Controls.Add(this.label3);
@@ -233,9 +259,12 @@
             this.Controls.Add(this.cmbPago);
             this.Controls.Add(this.txtTotal);
             this.Name = "FormPedido";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Form1";
             this.Load += new System.EventHandler(this.FormPedido_Load);
             ((System.ComponentModel.ISupportInitialize)(this.dgvPedidos)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
+            this.groupBox1.ResumeLayout(false);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -260,6 +289,8 @@
         private System.Windows.Forms.Button btnAbrirGrafico;
         private System.Windows.Forms.Button btnExportar;
         private System.Windows.Forms.Button btnEditar;
+        private System.Windows.Forms.PictureBox pictureBox1;
+        private System.Windows.Forms.GroupBox groupBox1;
     }
 }
 

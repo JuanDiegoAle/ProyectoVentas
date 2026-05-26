@@ -47,6 +47,12 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="UI\FormCarga.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="UI\FormCarga.Designer.cs">
+      <DependentUpon>FormCarga.cs</DependentUpon>
+    </Compile>
     <Compile Include="Interfaces\IPagoService.cs" />
     <Compile Include="Interfaces\IPedidoRepository.cs" />
     <Compile Include="Interfaces\IUsuarioRepository.cs" />
@@ -78,6 +84,9 @@
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <EmbeddedResource Include="UI\FormCarga.resx">
+      <DependentUpon>FormCarga.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="UI\FormGrafico.resx">
       <DependentUpon>FormGrafico.cs</DependentUpon>
     </EmbeddedResource>

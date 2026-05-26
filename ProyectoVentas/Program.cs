@@ -19,7 +19,7 @@ namespace ProyectoVentas
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
             IUsuarioRepository usuarioRepo = new UsuarioRepository();
-
+            
             Application.Run(new FormLogin(usuarioRepo));
         }
     }
